@@ -1,0 +1,273 @@
+{
+  "2Q11": {
+    "monday": {
+      "slot1": null,
+      "slot2": null,
+      "slot3": { "Course": "AI FOR ENGINEERS", "Room": "LT303", "Instructor": "RTS" },
+      "slot4": { "Course": "AI FOR ENGINEERS", "Room": "LT303", "Instructor": "RTS" },
+      "slot5": { "Course": "DATABASE MANAGEMENT SYSTEMS LAB", "Room": "DBMS-1", "Instructor": "PRM-RA" },
+      "slot6": { "Course": "DATABASE MANAGEMENT SYSTEMS LAB", "Room": "DBMS-1", "Instructor": "PRM-RA" },
+      "slot7": null, "slot8": null, "slot9": null,
+      "slot10": { "Course": "DESIGN & ANALYSIS OF ALGORITHMS", "Room": "LT102", "Instructor": "KAP" },
+      "slot11": { "Course": "DATABASE MANAGEMENT SYSTEMS", "Room": "LT102", "Instructor": "MHK" },
+      "slot12": null, "slot13": null, "slot14": null
+    },
+    "tuesday": {
+      "slot1": { "Course": "COMPUTER NETWORKS LAB", "Room": "NS-1", "Instructor": "ANU-RA" },
+      "slot2": { "Course": "COMPUTER NETWORKS LAB", "Room": "NS-1", "Instructor": "ANU-RA" },
+      "slot3": null, "slot4": null, "slot5": null, "slot6": null,
+      "slot7": { "Course": "APTITUDE SKILLS BUILDING", "Room": "LT102", "Instructor": "TBA" },
+      "slot8": { "Course": "APTITUDE SKILLS BUILDING", "Room": "LT102", "Instructor": "TBA" },
+      "slot9": null,
+      "slot10": { "Course": "PROBABILITY & STATISTICS LAB", "Room": "G307", "Instructor": "TBA" },
+      "slot11": { "Course": "PROBABILITY & STATISTICS LAB", "Room": "G307", "Instructor": "TBA" },
+      "slot12": null, "slot13": null, "slot14": null
+    },
+    "wednesday": {
+      "slot1": null, "slot2": null,
+      "slot3": { "Course": "DATABASE MANAGEMENT SYSTEMS", "Room": "LT102", "Instructor": "MHK" },
+      "slot4": { "Course": "COMPUTER NETWORKS", "Room": "LT102", "Instructor": "HMG" },
+      "slot5": { "Course": "PROBABILITY AND STATISTICS", "Room": "LT102", "Instructor": "VJK" },
+      "slot6": { "Course": "ENGINEERING DESIGN PROJECT II", "Room": "LT102", "Instructor": "KAS/SUR" },
+      "slot7": null, "slot8": null, "slot9": null,
+      "slot10": { "Course": "AI FOR ENGINEERS LAB", "Room": "LT303", "Instructor": "RTS" },
+      "slot11": { "Course": "AI FOR ENGINEERS LAB", "Room": "LT303", "Instructor": "RTS" },
+      "slot12": null, "slot13": null, "slot14": null
+    },
+    "thursday": {
+      "slot1": { "Course": "DESIGN & ANALYSIS OF ALGORITHMS", "Room": "LT102", "Instructor": "KAP" },
+      "slot2": { "Course": "PROBABILITY AND STATISTICS", "Room": "LT102", "Instructor": "VJK" },
+      "slot3": { "Course": "COMPUTER NETWORKS", "Room": "LT102", "Instructor": "HMG" },
+      "slot4": null,
+      "slot5": { "Course": "DESIGN & ANALYSIS OF ALGORITHMS LAB", "Room": "DS-1", "Instructor": "KAP" },
+      "slot6": { "Course": "DESIGN & ANALYSIS OF ALGORITHMS LAB", "Room": "DS-1", "Instructor": "KAP" },
+      "slot7": null, "slot8": null, "slot9": null, "slot10": null, "slot11": null, "slot12": null, "slot13": null, "slot14": null
+    },
+    "friday": {
+      "slot1": { "Course": "DATABASE MANAGEMENT SYSTEMS", "Room": "LT102", "Instructor": "MHK" },
+      "slot2": { "Course": "COMPUTER NETWORKS", "Room": "LT102", "Instructor": "HMG" },
+      "slot3": null, "slot4": null, "slot5": null, "slot6": null, "slot7": null,
+      "slot8": { "Course": "DESIGN & ANALYSIS OF ALGORITHMS", "Room": "LT102", "Instructor": "KAP" },
+      "slot9": { "Course": "PROBABILITY AND STATISTICS", "Room": "LT102", "Instructor": "VJK" },
+      "slot10": { "Course": "ENGINEERING DESIGN PROJECT II LAB", "Room": "L101/B204", "Instructor": "VBH-RA/APC-11" },
+      "slot11": { "Course": "ENGINEERING DESIGN PROJECT II LAB", "Room": "L101/B204", "Instructor": "VBH-RA/APC-11" },
+      "slot12": null, "slot13": null, "slot14": null
+    }
+  },
+  "2Q12": {
+    "monday": {
+      "slot1": null, "slot2": null,
+      "slot3": { "Course": "AI FOR ENGINEERS", "Room": "LT303", "Instructor": "RTS" },
+      "slot4": { "Course": "AI FOR ENGINEERS", "Room": "LT303", "Instructor": "RTS" },
+      "slot5": { "Course": "DATABASE MANAGEMENT SYSTEMS LAB", "Room": "DBMS-2", "Instructor": "TAG" },
+      "slot6": { "Course": "DATABASE MANAGEMENT SYSTEMS LAB", "Room": "DBMS-2", "Instructor": "TAG" },
+      "slot7": null, "slot8": null, "slot9": null,
+      "slot10": { "Course": "DESIGN & ANALYSIS OF ALGORITHMS", "Room": "LT102", "Instructor": "KAP" },
+      "slot11": { "Course": "DATABASE MANAGEMENT SYSTEMS", "Room": "LT102", "Instructor": "MHK" },
+      "slot12": null, "slot13": null, "slot14": null
+    },
+    "tuesday": {
+      "slot1": { "Course": "COMPUTER NETWORKS LAB", "Room": "NS-2", "Instructor": "PRK-RA" },
+      "slot2": { "Course": "COMPUTER NETWORKS LAB", "Room": "NS-2", "Instructor": "PRK-RA" },
+      "slot3": null, "slot4": null, "slot5": null, "slot6": null,
+      "slot7": { "Course": "APTITUDE SKILLS BUILDING", "Room": "LT102", "Instructor": "TBA" },
+      "slot8": { "Course": "APTITUDE SKILLS BUILDING", "Room": "LT102", "Instructor": "TBA" },
+      "slot9": null, "slot10": null, "slot11": null, "slot12": null, "slot13": null, "slot14": null
+    },
+    "wednesday": {
+      "slot1": null, "slot2": null,
+      "slot3": { "Course": "DATABASE MANAGEMENT SYSTEMS", "Room": "LT102", "Instructor": "MHK" },
+      "slot4": { "Course": "COMPUTER NETWORKS", "Room": "LT102", "Instructor": "HMG" },
+      "slot5": { "Course": "PROBABILITY AND STATISTICS", "Room": "LT102", "Instructor": "VJK" },
+      "slot6": { "Course": "ENGINEERING DESIGN PROJECT II", "Room": "LT102", "Instructor": "KAS/SUR" },
+      "slot7": null, "slot8": null, "slot9": null,
+      "slot10": { "Course": "AI FOR ENGINEERS LAB", "Room": "LT303", "Instructor": "RTS" },
+      "slot11": { "Course": "AI FOR ENGINEERS LAB", "Room": "LT303", "Instructor": "RTS" },
+      "slot12": null, "slot13": null, "slot14": null
+    },
+    "thursday": {
+      "slot1": { "Course": "DESIGN & ANALYSIS OF ALGORITHMS", "Room": "LT102", "Instructor": "KAP" },
+      "slot2": { "Course": "PROBABILITY AND STATISTICS", "Room": "LT102", "Instructor": "VJK" },
+      "slot3": { "Course": "COMPUTER NETWORKS", "Room": "LT102", "Instructor": "HMG" },
+      "slot4": null,
+      "slot5": { "Course": "DESIGN & ANALYSIS OF ALGORITHMS LAB", "Room": "DS-2", "Instructor": "SUR" },
+      "slot6": { "Course": "DESIGN & ANALYSIS OF ALGORITHMS LAB", "Room": "DS-2", "Instructor": "SUR" },
+      "slot7": null, "slot8": null, "slot9": null,
+      "slot10": { "Course": "PROBABILITY & STATISTICS LAB", "Room": "CG-2", "Instructor": "TBA" },
+      "slot11": { "Course": "PROBABILITY & STATISTICS LAB", "Room": "CG-2", "Instructor": "TBA" },
+      "slot12": null, "slot13": null, "slot14": null
+    },
+    "friday": {
+      "slot1": { "Course": "DATABASE MANAGEMENT SYSTEMS", "Room": "LT102", "Instructor": "MHK" },
+      "slot2": { "Course": "COMPUTER NETWORKS", "Room": "LT102", "Instructor": "HMG" },
+      "slot3": null, "slot4": null, "slot5": null, "slot6": null, "slot7": null,
+      "slot8": { "Course": "DESIGN & ANALYSIS OF ALGORITHMS", "Room": "LT102", "Instructor": "KAP" },
+      "slot9": { "Course": "PROBABILITY AND STATISTICS", "Room": "LT102", "Instructor": "VJK" },
+      "slot10": { "Course": "ENGINEERING DESIGN PROJECT II LAB", "Room": "L209/B216", "Instructor": "SAS-RA/APC-5" },
+      "slot11": { "Course": "ENGINEERING DESIGN PROJECT II LAB", "Room": "L209/B216", "Instructor": "SAS-RA/APC-5" },
+      "slot12": null, "slot13": null, "slot14": null
+    }
+  },
+  "2Q13": {
+    "monday": {
+      "slot1": null, "slot2": null,
+      "slot3": { "Course": "AI FOR ENGINEERS", "Room": "LT303", "Instructor": "RTS" },
+      "slot4": { "Course": "AI FOR ENGINEERS", "Room": "LT303", "Instructor": "RTS" },
+      "slot5": { "Course": "ENGINEERING DESIGN PROJECT II LAB", "Room": "L101/B204", "Instructor": "SAN-RA/DG" },
+      "slot6": { "Course": "ENGINEERING DESIGN PROJECT II LAB", "Room": "L101/B204", "Instructor": "SAN-RA/DG" },
+      "slot7": null, "slot8": null, "slot9": null,
+      "slot10": { "Course": "DESIGN & ANALYSIS OF ALGORITHMS", "Room": "LT102", "Instructor": "KAP" },
+      "slot11": { "Course": "DATABASE MANAGEMENT SYSTEMS", "Room": "LT102", "Instructor": "MHK" },
+      "slot12": null, "slot13": null, "slot14": null
+    },
+    "tuesday": {
+      "slot1": { "Course": "DESIGN & ANALYSIS OF ALGORITHMS LAB", "Room": "DS-1", "Instructor": "BDK-RA" },
+      "slot2": { "Course": "DESIGN & ANALYSIS OF ALGORITHMS LAB", "Room": "DS-1", "Instructor": "BDK-RA" },
+      "slot3": null, "slot4": null, "slot5": null, "slot6": null,
+      "slot7": { "Course": "APTITUDE SKILLS BUILDING", "Room": "LT102", "Instructor": "TBA" },
+      "slot8": { "Course": "APTITUDE SKILLS BUILDING", "Room": "LT102", "Instructor": "TBA" },
+      "slot9": null, "slot10": null, "slot11": null, "slot12": null, "slot13": null, "slot14": null
+    },
+    "wednesday": {
+      "slot1": null, "slot2": null,
+      "slot3": { "Course": "DATABASE MANAGEMENT SYSTEMS", "Room": "LT102", "Instructor": "MHK" },
+      "slot4": { "Course": "COMPUTER NETWORKS", "Room": "LT102", "Instructor": "HMG" },
+      "slot5": { "Course": "PROBABILITY AND STATISTICS", "Room": "LT102", "Instructor": "VJK" },
+      "slot6": { "Course": "ENGINEERING DESIGN PROJECT II", "Room": "LT102", "Instructor": "KAS/SUR" },
+      "slot7": null,
+      "slot8": { "Course": "DATABASE MANAGEMENT SYSTEMS LAB", "Room": "DBMS-1", "Instructor": "PRM-RA" },
+      "slot9": { "Course": "DATABASE MANAGEMENT SYSTEMS LAB", "Room": "DBMS-1", "Instructor": "PRM-RA" },
+      "slot10": { "Course": "AI FOR ENGINEERS LAB", "Room": "LT303", "Instructor": "RTS" },
+      "slot11": { "Course": "AI FOR ENGINEERS LAB", "Room": "LT303", "Instructor": "RTS" },
+      "slot12": null, "slot13": null, "slot14": null
+    },
+    "thursday": {
+      "slot1": { "Course": "DESIGN & ANALYSIS OF ALGORITHMS", "Room": "LT102", "Instructor": "KAP" },
+      "slot2": { "Course": "PROBABILITY AND STATISTICS", "Room": "LT102", "Instructor": "VJK" },
+      "slot3": { "Course": "COMPUTER NETWORKS", "Room": "LT102", "Instructor": "HMG" },
+      "slot4": null, "slot5": null, "slot6": null, "slot7": null,
+      "slot8": { "Course": "COMPUTER NETWORKS LAB", "Room": "NS-1", "Instructor": "SND-RF" },
+      "slot9": { "Course": "COMPUTER NETWORKS LAB", "Room": "NS-1", "Instructor": "SND-RF" },
+      "slot10": null, "slot11": null, "slot12": null, "slot13": null, "slot14": null
+    },
+    "friday": {
+      "slot1": { "Course": "DATABASE MANAGEMENT SYSTEMS", "Room": "LT102", "Instructor": "MHK" },
+      "slot2": { "Course": "COMPUTER NETWORKS", "Room": "LT102", "Instructor": "HMG" },
+      "slot3": null, "slot4": null,
+      "slot5": { "Course": "PROBABILITY & STATISTICS LAB", "Room": "G201", "Instructor": "TBA" },
+      "slot6": { "Course": "PROBABILITY & STATISTICS LAB", "Room": "G201", "Instructor": "TBA" },
+      "slot7": null,
+      "slot8": { "Course": "DESIGN & ANALYSIS OF ALGORITHMS", "Room": "LT102", "Instructor": "KAP" },
+      "slot9": { "Course": "PROBABILITY AND STATISTICS", "Room": "LT102", "Instructor": "VJK" },
+      "slot10": null, "slot11": null, "slot12": null, "slot13": null, "slot14": null
+    }
+  },
+  "2Q14": {
+    "monday": {
+      "slot1": null, "slot2": null,
+      "slot3": { "Course": "AI FOR ENGINEERS", "Room": "LT303", "Instructor": "RTS" },
+      "slot4": { "Course": "AI FOR ENGINEERS", "Room": "LT303", "Instructor": "RTS" },
+      "slot5": { "Course": "ENGINEERING DESIGN PROJECT II LAB", "Room": "L209/B216", "Instructor": "NAD-RA/APC-11" },
+      "slot6": { "Course": "ENGINEERING DESIGN PROJECT II LAB", "Room": "L209/B216", "Instructor": "NAD-RA/APC-11" },
+      "slot7": null, "slot8": null, "slot9": null,
+      "slot10": { "Course": "DESIGN & ANALYSIS OF ALGORITHMS", "Room": "LT102", "Instructor": "KAP" },
+      "slot11": { "Course": "DATABASE MANAGEMENT SYSTEMS", "Room": "LT102", "Instructor": "MHK" },
+      "slot12": null, "slot13": null, "slot14": null
+    },
+    "tuesday": {
+      "slot1": { "Course": "DESIGN & ANALYSIS OF ALGORITHMS LAB", "Room": "DS-2", "Instructor": "ARU-RA" },
+      "slot2": { "Course": "DESIGN & ANALYSIS OF ALGORITHMS LAB", "Room": "DS-2", "Instructor": "ARU-RA" },
+      "slot3": null, "slot4": null, "slot5": null, "slot6": null,
+      "slot7": { "Course": "APTITUDE SKILLS BUILDING", "Room": "LT102", "Instructor": "TBA" },
+      "slot8": { "Course": "APTITUDE SKILLS BUILDING", "Room": "LT102", "Instructor": "TBA" },
+      "slot9": null, "slot10": null, "slot11": null, "slot12": null, "slot13": null, "slot14": null
+    },
+    "wednesday": {
+      "slot1": null, "slot2": null,
+      "slot3": { "Course": "DATABASE MANAGEMENT SYSTEMS", "Room": "LT102", "Instructor": "MHK" },
+      "slot4": { "Course": "COMPUTER NETWORKS", "Room": "LT102", "Instructor": "HMG" },
+      "slot5": { "Course": "PROBABILITY AND STATISTICS", "Room": "LT102", "Instructor": "VJK" },
+      "slot6": { "Course": "ENGINEERING DESIGN PROJECT II", "Room": "LT102", "Instructor": "KAS/SUR" },
+      "slot7": null,
+      "slot8": { "Course": "DATABASE MANAGEMENT SYSTEMS LAB", "Room": "DBMS-2", "Instructor": "SIK" },
+      "slot9": { "Course": "DATABASE MANAGEMENT SYSTEMS LAB", "Room": "DBMS-2", "Instructor": "SIK" },
+      "slot10": { "Course": "AI FOR ENGINEERS LAB", "Room": "LT303", "Instructor": "RTS" },
+      "slot11": { "Course": "AI FOR ENGINEERS LAB", "Room": "LT303", "Instructor": "RTS" },
+      "slot12": null, "slot13": null, "slot14": null
+    },
+    "thursday": {
+      "slot1": { "Course": "DESIGN & ANALYSIS OF ALGORITHMS", "Room": "LT102", "Instructor": "KAP" },
+      "slot2": { "Course": "PROBABILITY AND STATISTICS", "Room": "LT102", "Instructor": "VJK" },
+      "slot3": { "Course": "COMPUTER NETWORKS", "Room": "LT102", "Instructor": "HMG" },
+      "slot4": null, "slot5": null, "slot6": null, "slot7": null,
+      "slot8": { "Course": "COMPUTER NETWORKS LAB", "Room": "NS-2", "Instructor": "GUK-RA" },
+      "slot9": { "Course": "COMPUTER NETWORKS LAB", "Room": "NS-2", "Instructor": "GUK-RA" },
+      "slot10": null, "slot11": null, "slot12": null, "slot13": null, "slot14": null
+    },
+    "friday": {
+      "slot1": { "Course": "DATABASE MANAGEMENT SYSTEMS", "Room": "LT102", "Instructor": "MHK" },
+      "slot2": { "Course": "COMPUTER NETWORKS", "Room": "LT102", "Instructor": "HMG" },
+      "slot3": null, "slot4": null,
+      "slot5": { "Course": "PROBABILITY & STATISTICS LAB", "Room": "G307", "Instructor": "TBA" },
+      "slot6": { "Course": "PROBABILITY & STATISTICS LAB", "Room": "G307", "Instructor": "TBA" },
+      "slot7": null,
+      "slot8": { "Course": "DESIGN & ANALYSIS OF ALGORITHMS", "Room": "LT102", "Instructor": "KAP" },
+      "slot9": { "Course": "PROBABILITY AND STATISTICS", "Room": "LT102", "Instructor": "VJK" },
+      "slot10": null, "slot11": null, "slot12": null, "slot13": null, "slot14": null
+    }
+  },
+  "2Q15": {
+    "monday": {
+      "slot1": null, "slot2": null,
+      "slot3": { "Course": "AI FOR ENGINEERS", "Room": "LT303", "Instructor": "RTS" },
+      "slot4": { "Course": "AI FOR ENGINEERS", "Room": "LT303", "Instructor": "RTS" },
+      "slot5": null, "slot6": null, "slot7": null,
+      "slot8": { "Course": "DESIGN & ANALYSIS OF ALGORITHMS LAB", "Room": "DS-2", "Instructor": "SHW-RA" },
+      "slot9": { "Course": "DESIGN & ANALYSIS OF ALGORITHMS LAB", "Room": "DS-2", "Instructor": "SHW-RA" },
+      "slot10": { "Course": "DESIGN & ANALYSIS OF ALGORITHMS", "Room": "LT102", "Instructor": "KAP" },
+      "slot11": { "Course": "DATABASE MANAGEMENT SYSTEMS", "Room": "LT102", "Instructor": "MHK" },
+      "slot12": null, "slot13": null, "slot14": null
+    },
+    "tuesday": {
+      "slot1": { "Course": "DATABASE MANAGEMENT SYSTEMS LAB", "Room": "DBMS-2", "Instructor": "PRM-RA" },
+      "slot2": { "Course": "DATABASE MANAGEMENT SYSTEMS LAB", "Room": "DBMS-2", "Instructor": "PRM-RA" },
+      "slot3": null, "slot4": null, "slot5": null, "slot6": null,
+      "slot7": { "Course": "APTITUDE SKILLS BUILDING", "Room": "LT102", "Instructor": "TBA" },
+      "slot8": { "Course": "APTITUDE SKILLS BUILDING", "Room": "LT102", "Instructor": "TBA" },
+      "slot9": null, "slot10": null, "slot11": null, "slot12": null, "slot13": null, "slot14": null
+    },
+    "wednesday": {
+      "slot1": null, "slot2": null,
+      "slot3": { "Course": "DATABASE MANAGEMENT SYSTEMS", "Room": "LT102", "Instructor": "MHK" },
+      "slot4": { "Course": "COMPUTER NETWORKS", "Room": "LT102", "Instructor": "HMG" },
+      "slot5": { "Course": "PROBABILITY AND STATISTICS", "Room": "LT102", "Instructor": "VJK" },
+      "slot6": { "Course": "ENGINEERING DESIGN PROJECT II", "Room": "LT102", "Instructor": "KAS/SUR" },
+      "slot7": null,
+      "slot8": { "Course": "COMPUTER NETWORKS LAB", "Room": "NS-1", "Instructor": "SHM-RA" },
+      "slot9": { "Course": "COMPUTER NETWORKS LAB", "Room": "NS-1", "Instructor": "SHM-RA" },
+      "slot10": { "Course": "AI FOR ENGINEERS LAB", "Room": "LT303", "Instructor": "RTS" },
+      "slot11": { "Course": "AI FOR ENGINEERS LAB", "Room": "LT303", "Instructor": "RTS" },
+      "slot12": null, "slot13": null, "slot14": null
+    },
+    "thursday": {
+      "slot1": { "Course": "DESIGN & ANALYSIS OF ALGORITHMS", "Room": "LT102", "Instructor": "KAP" },
+      "slot2": { "Course": "PROBABILITY AND STATISTICS", "Room": "LT102", "Instructor": "VJK" },
+      "slot3": { "Course": "COMPUTER NETWORKS", "Room": "LT102", "Instructor": "HMG" },
+      "slot4": null,
+      "slot5": { "Course": "PROBABILITY & STATISTICS LAB", "Room": "CG-2", "Instructor": "TBA" },
+      "slot6": { "Course": "PROBABILITY & STATISTICS LAB", "Room": "CG-2", "Instructor": "TBA" },
+      "slot7": null, "slot8": null, "slot9": null, "slot10": null, "slot11": null, "slot12": null, "slot13": null, "slot14": null
+    },
+    "friday": {
+      "slot1": { "Course": "DATABASE MANAGEMENT SYSTEMS", "Room": "LT102", "Instructor": "MHK" },
+      "slot2": { "Course": "COMPUTER NETWORKS", "Room": "LT102", "Instructor": "HMG" },
+      "slot3": null, "slot4": null,
+      "slot5": { "Course": "ENGINEERING DESIGN PROJECT II LAB", "Room": "L101/B204", "Instructor": "VBH-RA/APC-4" },
+      "slot6": { "Course": "ENGINEERING DESIGN PROJECT II LAB", "Room": "L101/B204", "Instructor": "VBH-RA/APC-4" },
+      "slot7": null,
+      "slot8": { "Course": "DESIGN & ANALYSIS OF ALGORITHMS", "Room": "LT102", "Instructor": "KAP" },
+      "slot9": { "Course": "PROBABILITY AND STATISTICS", "Room": "LT102", "Instructor": "VJK" },
+      "slot10": null, "slot11": null, "slot12": null, "slot13": null, "slot14": null
+    }
+  }
+}
