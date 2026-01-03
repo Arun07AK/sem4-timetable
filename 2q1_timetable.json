@@ -103,8 +103,8 @@
       "slot3": null, "slot4": null, "slot5": null, "slot6": null, "slot7": null,
       "slot8": { "Course": "DESIGN & ANALYSIS OF ALGORITHMS", "Room": "LT102", "Instructor": "KAP" },
       "slot9": { "Course": "PROBABILITY AND STATISTICS", "Room": "LT102", "Instructor": "VJK" },
-      "slot10": { "Course": "ENGINEERING DESIGN PROJECT II LAB", "Room": "L209/B216", "Instructor": "SAS-RA/APC-5" },
-      "slot11": { "Course": "ENGINEERING DESIGN PROJECT II LAB", "Room": "L209/B216", "Instructor": "SAS-RA/APC-5" },
+      "slot10": { "Course": "ENGINEERING DESIGN PROJECT II LAB", "Room": "L209/B203", "Instructor": "SAS-RA/APC-5" },
+      "slot11": { "Course": "ENGINEERING DESIGN PROJECT II LAB", "Room": "L209/B203", "Instructor": "SAS-RA/APC-5" },
       "slot12": null, "slot13": null, "slot14": null
     }
   },
