@@ -6,24 +6,39 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'G-2NQ6TTY12L');
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>2Q1 Timetable - Semester IV</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
+    
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         :root {
             --bg: #0a0a0a;
             --surface: #141414;
+            --surface-2: #1a1a1a;
+            --surface-3: #222222;
             --border: #262626;
+            --border-light: #333333;
             --text: #fafafa;
             --text-muted: #737373;
+            --text-secondary: #a3a3a3;
             --accent: #3b82f6;
             --accent-hover: #2563eb;
+            --green: #059669;
+            --green-light: #10b981;
+            --purple: #8b5cf6;
+            --orange: #f59e0b;
+            --red: #dc2626;
+            --red-light: #ef4444;
         }
 
         body { 
@@ -33,7 +48,7 @@
             color: var(--text);
         }
 
-        /* Landing Page Styles */
+        /* ==================== LANDING PAGE ==================== */
         .landing-page {
             min-height: 100vh;
             display: flex;
@@ -91,7 +106,7 @@
             display: grid;
             grid-template-columns: repeat(5, 1fr);
             gap: 12px;
-            margin-bottom: 48px;
+            margin-bottom: 32px;
         }
 
         .section-btn {
@@ -112,7 +127,7 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(135deg, var(--accent) 0%, #8b5cf6 100%);
+            background: linear-gradient(135deg, var(--accent) 0%, var(--purple) 100%);
             opacity: 0;
             transition: opacity 0.2s ease;
         }
@@ -137,86 +152,763 @@
             color: var(--text-muted);
             font-weight: 400;
             margin-top: 4px;
+            position: relative;
+            z-index: 1;
         }
 
-/* Footer Container - Pinned to Bottom */
-.footer-credit {
-    position: absolute; /* Keeps it at the bottom */
-    bottom: 30px;       /* Distance from bottom edge */
-    left: 0;
-    right: 0;           /* Centers it horizontally */
-    font-size: 0.8rem;
-    color: var(--text-muted);
-    letter-spacing: 0.05em;
+        /* ==================== NEW ASTHETIC BUTTON STYLE ==================== */
+.resource-hub-btn {
     display: flex;
-    flex-direction: column; /* Stacks "created by" above name */
     align-items: center;
-    gap: 8px;
-    z-index: 10;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto 48px auto;
+    padding: 22px 28px;
+    
+    /* DARK THEME: Matches your Section Buttons */
+    background: var(--surface); 
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    color: var(--text);
+    
+    font-size: 1.05rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    
+    /* Subtle shadow instead of heavy glow */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
-/* The Link (Name + Icon) */
-.footer-credit a {
-    text-decoration: none;
-    font-size: 1.4rem;
-    font-weight: 900;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    font-family: 'Inter', sans-serif;
-    /* Gradient Text Effect */
-    background: linear-gradient(90deg, #978686, #564d4d, #e9eff9, #b18585);
-    background-size: 300%;
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    /* Aligns Icon next to Text */
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    transition: all 0.3s ease;
-    animation: shimmer 5s infinite linear;
+/* The "Glow" Effect (Hidden by default, visible on Hover) */
+.resource-hub-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--accent) 0%, var(--purple) 100%);
+    opacity: 0; /* Hidden */
+    transition: opacity 0.3s ease;
+    z-index: 0;
 }
 
-/* Instagram Icon Styling */
-.insta-icon {
-    width: 18px;
-    height: 18px;
-    fill: #737373; /* Matches muted text color */
-    transition: all 0.3s ease;
-    margin-bottom: 2px; /* Visual alignment fix */
+/* Hover State */
+.resource-hub-btn:hover {
+    border-color: var(--purple); /* Purple border on hover */
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px -10px rgba(139, 92, 246, 0.5); /* Soft purple glow */
 }
 
-/* Hover Effects */
-.footer-credit a:hover {
-    transform: scale(1.05);
-    text-shadow: 0 0 30px rgba(139, 92, 246, 0.3);
+.resource-hub-btn:hover::before {
+    opacity: 0.1; /* Shows the gradient faintly inside */
 }
 
-.footer-credit a:hover .insta-icon {
-    fill: #e9eff9; /* Icon glows white on hover */
-    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
+/* Ensure text stays on top */
+.resource-hub-btn svg,
+.resource-hub-btn span,
+.live-dot,
+.resource-badge {
+    position: relative;
+    z-index: 2;
 }
 
-@keyframes shimmer {
-    0% { background-position: 0% 50%; }
-    100% { background-position: 100% 50%; }
+/* Update the Icon Color */
+.resource-hub-btn svg {
+    width: 24px;
+    height: 24px;
+    color: var(--text-muted); /* Grey icon by default */
+    transition: color 0.3s ease;
 }
 
-        /* Timetable Page Styles */
-        .timetable-page {
-            display: none;
-            padding: 30px 20px;
-            background: #fafafa;
-            min-height: 100vh;
+.resource-hub-btn:hover svg {
+    color: var(--purple); /* Turns purple on hover */
+}
+
+/* New Minimalist "Live" Badge */
+.resource-badge {
+    background: rgba(16, 185, 129, 0.1); /* Very subtle green bg */
+    color: var(--green-light);
+    border: 1px solid rgba(16, 185, 129, 0.2);
+    padding: 4px 10px;
+    border-radius: 100px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    margin-left: auto; /* Pushes badge to the far right */
+}
+
+        /* Footer */
+        .footer-credit {
+            position: absolute;
+            bottom: 30px;
+            left: 0;
+            right: 0;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            letter-spacing: 0.05em;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            z-index: 10;
         }
 
-        .timetable-page.active {
+        .footer-credit a {
+            text-decoration: none;
+            font-size: 1.4rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(90deg, #978686, #564d4d, #e9eff9, #b18585);
+            background-size: 300%;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            animation: shimmer 5s infinite linear;
+        }
+
+        .insta-icon {
+            width: 18px;
+            height: 18px;
+            fill: #737373;
+            transition: all 0.3s ease;
+            margin-bottom: 2px;
+        }
+
+        .footer-credit a:hover {
+            transform: scale(1.05);
+        }
+
+        .footer-credit a:hover .insta-icon {
+            fill: #e9eff9;
+            filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
+        }
+
+        @keyframes shimmer {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+
+        /* ==================== RESOURCE HUB PAGE ==================== */
+        .resource-page {
+            display: none;
+            min-height: 100vh;
+            padding: 30px 20px;
+            background: var(--bg);
+        }
+
+        .resource-page.active {
             display: block;
         }
 
-        .landing-page.hidden {
-            display: none;
+        .resource-header {
+            max-width: 900px;
+            margin: 0 auto 30px auto;
+            text-align: center;
         }
+
+        /* ==================== UNIFIED TITLE STYLE ==================== */
+.resource-header h1 {
+    font-size: clamp(2rem, 5vw, 2.5rem); /* Responsive size */
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin-bottom: 8px;
+    
+    /* The "2Q1 Timetable" Gradient Style */
+    background: linear-gradient(135deg, #fff 0%, #737373 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    
+    /* Optional: Slight drop shadow for depth */
+    filter: drop-shadow(0 2px 10px rgba(0,0,0,0.2));
+}
+
+/* Also update the icon next to it (if you add one later) */
+.resource-header h1 svg {
+    color: #fff; /* Reset icon color if needed */
+}
+
+        .resource-header p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .connection-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 12px;
+            background: var(--surface);
+            border-radius: 20px;
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            margin-top: 12px;
+        }
+
+        .connection-status .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--green);
+        }
+
+        .connection-status.offline .dot {
+            background: var(--red);
+        }
+
+        /* ==================== STEALTH TAB STYLE ==================== */
+.tab-nav {
+    display: flex;
+    justify-content: center;
+    gap: 16px; /* A bit more space between buttons */
+    margin-bottom: 32px;
+}
+
+.tab-btn {
+    padding: 12px 24px;
+    
+    /* Dark Base Style (The "Black/White Mix") */
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    
+    /* Text starts muted (Grey) */
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    font-weight: 500;
+    
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Hover State: The "Blue Glow" appears */
+.tab-btn:hover {
+    border-color: var(--accent); /* Blue Border */
+    color: white;                /* White Text */
+    transform: translateY(-2px);
+    
+    /* The Glow */
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.4); 
+}
+
+/* Active State: Stays lit up */
+.tab-btn.active {
+    background: var(--surface);  /* Keep background dark */
+    border-color: var(--accent); /* Blue Border */
+    color: white;                /* White Text */
+    
+    /* Stronger Glow for the active tab */
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+}
+
+/* Icon Styling */
+.tab-btn svg {
+    width: 18px;
+    height: 18px;
+    transition: all 0.3s ease;
+    opacity: 0.6;
+}
+
+/* Icon lights up on Hover/Active */
+.tab-btn:hover svg,
+.tab-btn.active svg {
+    opacity: 1;
+    color: var(--accent); /* Icon turns Blue */
+    filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.6)); /* Icon glows too */
+}
+
+        /* Subject Filter */
+        .subject-filter {
+            max-width: 900px;
+            margin: 0 auto 24px auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+        }
+
+        .subject-chip {
+            padding: 8px 16px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .subject-chip:hover {
+            border-color: var(--accent);
+            color: var(--text);
+        }
+
+        .subject-chip.active {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: white;
+        }
+
+        /* Resource List */
+        .resource-list {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .resource-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            gap: 16px;
+            transition: all 0.2s ease;
+        }
+
+        .resource-card:hover {
+            border-color: var(--border-light);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .resource-card.reported {
+            opacity: 0.5;
+            border-color: var(--red);
+        }
+
+        /* Vote Section */
+        .vote-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+            min-width: 50px;
+        }
+
+        .vote-btn {
+            width: 36px;
+            height: 28px;
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .vote-btn:hover {
+            background: var(--surface-3);
+            border-color: var(--border-light);
+        }
+
+        .vote-btn.upvote:hover, .vote-btn.upvote.active {
+            background: var(--green);
+            border-color: var(--green);
+            color: white;
+        }
+
+        .vote-btn.downvote:hover, .vote-btn.downvote.active {
+            background: var(--red);
+            border-color: var(--red);
+            color: white;
+        }
+
+        .vote-btn svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .vote-count {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text);
+            padding: 4px 0;
+        }
+
+        .vote-count.positive { color: var(--green-light); }
+        .vote-count.negative { color: var(--red-light); }
+
+        /* Resource Content */
+        .resource-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .resource-title-row {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 8px;
+        }
+
+        .resource-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .resource-title a {
+            color: var(--text);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .resource-title a:hover {
+            color: var(--accent);
+        }
+
+        .external-icon {
+            width: 14px;
+            height: 14px;
+            color: var(--text-muted);
+            flex-shrink: 0;
+        }
+
+        .report-btn {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            padding: 4px;
+            border-radius: 4px;
+            transition: all 0.2s;
+            flex-shrink: 0;
+        }
+
+        .report-btn:hover {
+            color: var(--red);
+            background: rgba(220, 38, 38, 0.1);
+        }
+
+        .report-btn.reported {
+            color: var(--red);
+        }
+
+        .report-btn svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .resource-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .meta-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            background: var(--surface-2);
+            padding: 4px 10px;
+            border-radius: 6px;
+        }
+
+        .meta-tag.platform {
+            background: rgba(59, 130, 246, 0.15);
+            color: var(--accent);
+        }
+
+        .meta-tag.type {
+            background: rgba(139, 92, 246, 0.15);
+            color: var(--purple);
+        }
+
+        .rating-stars {
+            display: inline-flex;
+            gap: 1px;
+        }
+
+        .rating-stars svg {
+            width: 11px;
+            height: 11px;
+        }
+
+        .rating-stars svg.filled {
+            fill: var(--orange);
+            color: var(--orange);
+        }
+
+        .rating-stars svg.empty {
+            fill: var(--border);
+            color: var(--border);
+        }
+
+        .resource-subject {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+        }
+
+        /* Loading & Empty States */
+        .loading-state, .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-muted);
+        }
+
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid var(--border);
+            border-top-color: var(--accent);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 16px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .empty-state svg {
+            width: 64px;
+            height: 64px;
+            margin-bottom: 16px;
+            opacity: 0.5;
+        }
+
+        .empty-state h3 {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+            color: var(--text);
+        }
+
+        /* ==================== ADD RESOURCE FORM ==================== */
+        .add-form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+        }
+
+        .form-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text);
+            margin-bottom: 8px;
+        }
+
+        .form-label span {
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        .form-input, .form-select {
+            width: 100%;
+            padding: 12px 16px;
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text);
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+        }
+
+        .form-input:focus, .form-select:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        }
+
+        .form-input.error {
+            border-color: var(--red);
+        }
+
+        .form-select {
+            cursor: pointer;
+        }
+
+        .form-select option {
+            background: var(--surface-2);
+            color: var(--text);
+        }
+
+        .form-hint {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 6px;
+        }
+
+        .form-error {
+            font-size: 0.75rem;
+            color: var(--red);
+            margin-top: 6px;
+        }
+
+        /* Star Rating Input */
+        .star-rating-input {
+            display: flex;
+            gap: 8px;
+        }
+
+        .star-btn {
+            width: 36px;
+            height: 36px;
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .star-btn:hover, .star-btn.active {
+            background: var(--orange);
+            border-color: var(--orange);
+        }
+
+        .star-btn svg {
+            width: 18px;
+            height: 18px;
+            color: var(--text-muted);
+        }
+
+        .star-btn:hover svg, .star-btn.active svg {
+            color: white;
+            fill: white;
+        }
+
+        .rating-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 6px;
+        }
+
+        /* ==================== STEALTH BLUE SUBMIT BUTTON ==================== */
+.submit-btn {
+    width: 100%;
+    padding: 18px 24px;
+    margin-top: 24px;
+    
+    /* Dark Base (Black/Grey Mix) */
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    
+    /* "Silver" Text Style */
+    color: #d4d4d4; /* Light Silver */
+    font-size: 1.05rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* HOVER STATE: Blue Power Up */
+.submit-btn:hover:not(:disabled) {
+    border-color: var(--accent);   /* Electric Blue Border */
+    color: white;                  /* Bright White Text */
+    background: rgba(59, 130, 246, 0.05); /* Faint Blue Tint */
+    
+    transform: translateY(-2px);
+    
+    /* The Blue Neon Glow */
+    box-shadow: 0 0 25px -5px rgba(59, 130, 246, 0.4);
+}
+
+/* Add a subtle shine effect on hover */
+.submit-btn:hover:not(:disabled)::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    animation: shine 0.5s ease forwards;
+}
+
+@keyframes shine {
+    to { left: 100%; }
+}
+
+/* DISABLED STATE */
+.submit-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background: var(--surface-2);
+}
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 16px 24px;
+            color: var(--text);
+            font-size: 0.9rem;
+            z-index: 1000;
+            transition: transform 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            max-width: 90%;
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .toast.success { border-color: var(--green); }
+        .toast.error { border-color: var(--red); }
+        .toast.warning { border-color: var(--orange); }
 
         /* Back Button */
         .back-btn {
@@ -224,10 +916,10 @@
             top: 20px;
             left: 20px;
             padding: 10px 16px;
-            background: #1a1a1a;
-            border: none;
+            background: var(--surface);
+            border: 1px solid var(--border);
             border-radius: 8px;
-            color: white;
+            color: var(--text);
             font-size: 0.85rem;
             font-weight: 500;
             cursor: pointer;
@@ -239,8 +931,34 @@
         }
 
         .back-btn:hover {
-            background: #333;
+            background: var(--surface-2);
             transform: translateX(-2px);
+        }
+
+        /* ==================== TIMETABLE PAGE ==================== */
+        .timetable-page {
+            display: none;
+            padding: 30px 20px;
+            background: #fafafa;
+            min-height: 100vh;
+        }
+
+        .timetable-page.active {
+            display: block;
+        }
+
+        .landing-page.hidden, .resource-page.hidden {
+            display: none;
+        }
+
+        .timetable-page .back-btn {
+            background: #1a1a1a;
+            border: none;
+            color: white;
+        }
+
+        .timetable-page .back-btn:hover {
+            background: #333;
         }
 
         /* Timetable Styles */
@@ -316,70 +1034,21 @@
         .legend-dot.lecture { background: #3b82f6; }
         .legend-dot.lab { background: #059669; }
         
-        .subject-reference {
-            max-width: 800px;
-            margin: 30px auto;
-            background: white;
-            border-radius: 12px;
-            padding: 24px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            border: 1px solid #e5e5e5;
-            color: #1a1a1a; /* Enforce black text */
-        }
-
-        .subject-reference h3 {
-            margin-bottom: 16px;
-            color: #1a1a1a;
-            font-size: 1.1rem;
-            font-weight: 600;
-        }
-
-        .subject-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.85rem;
-        }
-
-        .subject-table th,
-        .subject-table td {
-            padding: 10px 12px;
-            text-align: left;
-            border-bottom: 1px solid #e5e5e5;
-            color: #1a1a1a; /* Enforce black text for cells */
-        }
-
-        .subject-table th {
-            background: #f8f9fa;
-            font-weight: 600;
-            color: #374151;
-        }
-
-        .subject-table tr:last-child td {
-            border-bottom: none;
-        }
-
-        .subject-table .code {
-            font-family: 'SF Mono', Monaco, monospace;
-            color: #3b82f6;
-            font-weight: 500;
-        }
-
+        .subject-reference { max-width: 800px; margin: 30px auto; background: white; border-radius: 12px; padding: 24px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); border: 1px solid #e5e5e5; color: #1a1a1a; }
+        .subject-reference h3 { margin-bottom: 16px; color: #1a1a1a; font-size: 1.1rem; font-weight: 600; }
+        .subject-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+        .subject-table th, .subject-table td { padding: 10px 12px; text-align: left; border-bottom: 1px solid #e5e5e5; color: #1a1a1a; }
+        .subject-table th { background: #f8f9fa; font-weight: 600; color: #374151; }
+        .subject-table tr:last-child td { border-bottom: none; }
+        .subject-table .code { font-family: 'SF Mono', Monaco, monospace; color: #3b82f6; font-weight: 500; }
         .timetable-footer { text-align: center; margin-top: 40px; color: #9ca3af; font-size: 0.75rem; }
 
         /* Mobile Responsive */
         @media (max-width: 768px) {
-            .section-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-            
-            .section-btn {
-                padding: 16px 12px;
-            }
-            
-            .main-title {
-                font-size: 2rem;
-            }
-            
+            .section-grid { grid-template-columns: repeat(3, 1fr); }
+            .section-btn { padding: 16px 12px; }
+            .main-title { font-size: 2rem; }
+            .resource-hub-btn { padding: 14px 20px; font-size: 0.9rem; max-width: 100%; }
             .timetable-page { padding: 15px 5px; }
             .timetable-wrapper { padding: 0 10px; }
             .timetable-container { grid-template-columns: 90px repeat(5, minmax(160px, 1fr)); min-width: 990px; font-size: 0.7rem; }
@@ -394,23 +1063,22 @@
             .today-btn, .week-btn, .download-btn { padding: 10px 20px; font-size: 0.8rem; width: 100%; max-width: 200px; }
             .current-time { font-size: 0.7rem; padding: 6px 12px; }
             .timetable-wrapper::before { content: "← Swipe to see all days →"; display: block; text-align: center; font-size: 0.65rem; color: #6b7280; padding: 6px; background: #f8f9fa; border-radius: 6px 6px 0 0; }
-            
-            .back-btn {
-                top: 10px;
-                left: 10px;
-                padding: 8px 12px;
-                font-size: 0.75rem;
-            }
+            .back-btn { top: 10px; left: 10px; padding: 8px 12px; font-size: 0.75rem; }
+            .add-form-container { padding: 20px; margin: 0 10px; }
+            .resource-card { flex-direction: column; }
+            .vote-section { flex-direction: row; justify-content: flex-start; gap: 8px; }
+            .tab-nav { flex-direction: column; align-items: stretch; padding: 0 10px; }
+            .tab-btn { justify-content: center; }
+            .resource-list { padding: 0 10px; }
         }
 
         @media (max-width: 480px) {
-            .section-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .section-btn small {
-                display: none;
-            }
+            .section-grid { grid-template-columns: repeat(2, 1fr); }
+            .section-btn small { display: none; }
+            .subject-filter { gap: 6px; padding: 0 10px; }
+            .subject-chip { padding: 6px 12px; font-size: 0.7rem; }
+            .resource-meta { gap: 6px; }
+            .meta-tag { padding: 3px 8px; font-size: 0.68rem; }
         }
     </style>
 </head>
@@ -445,19 +1113,173 @@
                     <small>Section E</small>
                 </button>
             </div>
+
+            <!-- Resource Hub Button -->
+            <button class="resource-hub-btn" onclick="openResourceHub()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                </svg>
+                Community Resource Hub
+                <div class="live-dot"></div>
+                <span class="resource-badge" id="resource-count">Live</span>
+            </button>
         </div>
         
-    <div class="footer-credit">
-    created by 
-    <a href="https://www.instagram.com/__arun_a_k/" target="_blank">
-        <svg class="insta-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-        </svg>
-        ARUN AK
-    </a>
-</div>
-</div>
-    
+        <div class="footer-credit">
+            created by 
+            <a href="https://www.instagram.com/__arun_a_k/" target="_blank">
+                <svg class="insta-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
+                ARUN AK
+            </a>
+        </div>
+    </div>
+
+    <!-- Resource Hub Page -->
+    <div class="resource-page" id="resource-page">
+        <button class="back-btn" onclick="goBackFromResources()">← Back</button>
+        
+        <div class="resource-header">
+            <h1> Community Resource Hub</h1>
+            <p>Peer-reviewed study materials • Real-time updates</p>
+            <div class="connection-status" id="connection-status">
+                <div class="dot"></div>
+                <span>Connected to Firebase</span>
+            </div>
+        </div>
+
+        <!-- Tab Navigation -->
+        <div class="tab-nav">
+            <button class="tab-btn active" id="view-tab" onclick="switchTab('view')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 6h16M4 10h16M4 14h16M4 18h16"/>
+                </svg>
+                Browse Resources
+            </button>
+            <button class="tab-btn" id="add-tab" onclick="switchTab('add')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 5v14m-7-7h14"/>
+                </svg>
+                Add Resource
+            </button>
+        </div>
+
+        <!-- View Tab Content -->
+        <div id="view-content">
+            <!-- Subject Filter -->
+            <div class="subject-filter" id="subject-filter">
+                <button class="subject-chip active" data-subject="all">All Subjects</button>
+                <button class="subject-chip" data-subject="UCS415">DAA</button>
+                <button class="subject-chip" data-subject="UCS310">DBMS</button>
+                <button class="subject-chip" data-subject="UCS321">AI</button>
+                <button class="subject-chip" data-subject="UCS414">CN</button>
+                <button class="subject-chip" data-subject="UMA401">Prob & Stats</button>
+                <button class="subject-chip" data-subject="UTA024">EDP-II</button>
+                <button class="subject-chip" data-subject="UTD003">Aptitude</button>
+            </div>
+
+            <!-- Resource List -->
+            <div class="resource-list" id="resource-list">
+                <div class="loading-state">
+                    <div class="loading-spinner"></div>
+                    <p>Loading resources...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add Tab Content -->
+        <div id="add-content" class="hidden">
+            <div class="add-form-container">
+                <h2 class="form-title">➕ Add a New Resource</h2>
+                
+                <form id="add-resource-form">
+                    <div class="form-group">
+                        <label class="form-label">Resource Title <span>(e.g., "Abdul Bari - Algorithms Playlist")</span></label>
+                        <input type="text" class="form-input" id="resource-title" placeholder="Enter a descriptive title" required maxlength="100">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Select Subject</label>
+                        <select class="form-select" id="resource-subject" required>
+                            <option value="">Choose a subject...</option>
+                            <option value="UCS415">UCS415 - Design & Analysis of Algorithms</option>
+                            <option value="UCS310">UCS310 - Database Management Systems</option>
+                            <option value="UCS321">UCS321 - AI for Engineers</option>
+                            <option value="UCS414">UCS414 - Computer Networks</option>
+                            <option value="UMA401">UMA401 - Probability and Statistics</option>
+                            <option value="UTA024">UTA024 - Engineering Design Project II</option>
+                            <option value="UTD003">UTD003 - Aptitude Skills Building</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Platform</label>
+                        <select class="form-select" id="resource-platform" required>
+                            <option value="">Choose platform...</option>
+                            <option value="YouTube">YouTube</option>
+                            <option value="Udemy">Udemy</option>
+                            <option value="Coursera">Coursera</option>
+                            <option value="NPTEL">NPTEL</option>
+                            <option value="GeeksforGeeks">GeeksforGeeks</option>
+                            <option value="LeetCode">LeetCode</option>
+                            <option value="Website">Website</option>
+                            <option value="PDF/Notes">PDF/Notes</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Type of Resource</label>
+                        <select class="form-select" id="resource-type" required>
+                            <option value="">Choose type...</option>
+                            <option value="Playlist">Video Playlist</option>
+                            <option value="Single Video">Single Video</option>
+                            <option value="Course">Full Course</option>
+                            <option value="Notes">Notes/PDF</option>
+                            <option value="Practice">Practice Problems</option>
+                            <option value="Tool">Tool/Software</option>
+                            <option value="Book">Book/eBook</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Resource URL <span>(required)</span></label>
+                        <input type="url" class="form-input" id="resource-url" placeholder="https://..." required>
+                        <div class="form-hint">Paste the direct link to the resource</div>
+                        <div class="form-error hidden" id="url-error">This resource already exists! Please upvote it instead.</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Content Quality <span>(Teaching style, clarity, production)</span></label>
+                        <div class="star-rating-input" id="quality-rating">
+                            <button type="button" class="star-btn" data-value="1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></button>
+                            <button type="button" class="star-btn" data-value="2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></button>
+                            <button type="button" class="star-btn" data-value="3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></button>
+                            <button type="button" class="star-btn" data-value="4"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></button>
+                            <button type="button" class="star-btn" data-value="5"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></button>
+                        </div>
+                        <div class="rating-label">Selected: <span id="quality-label">Not rated</span></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Syllabus Relevancy <span>(How well does it match our syllabus?)</span></label>
+                        <div class="star-rating-input" id="relevancy-rating">
+                            <button type="button" class="star-btn" data-value="1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></button>
+                            <button type="button" class="star-btn" data-value="2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></button>
+                            <button type="button" class="star-btn" data-value="3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></button>
+                            <button type="button" class="star-btn" data-value="4"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></button>
+                            <button type="button" class="star-btn" data-value="5"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></button>
+                        </div>
+                        <div class="rating-label">Selected: <span id="relevancy-label">Not rated</span></div>
+                    </div>
+
+                    <button type="submit" class="submit-btn" id="submit-btn">Add Resource</button>
+                </form>
+            </div>
+        </div>
+    </div>
 
     <!-- Timetable Page -->
     <div class="timetable-page" id="timetable-page">
@@ -467,8 +1289,8 @@
         <div class="semester-badge"><span>📚 Semester IV • Jan - May 2026</span></div>
         
         <div class="controls">
-            <button id="today-btn" class="today-btn">Today's Focus</button>
-            <button id="week-btn" class="week-btn">Full Week</button>
+            <button id="today-btn" class="today-btn">📅 Today's Focus</button>
+            <button id="week-btn" class="week-btn">📋 Full Week</button>
             <button id="download-btn" class="download-btn">📥 Download as Image</button>
             <div id="current-time" class="current-time"></div>
         </div>
@@ -524,25 +1346,546 @@
             </table>
         </div>
         
-        <div class="timetable-footer">
-            created by arun ak • © 2026
-        </div>
+        <div class="timetable-footer">created by arun ak • © 2026</div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <span id="toast-message">Success!</span>
     </div>
 
     <script>
+        // ==================== FIREBASE CONFIGURATION ====================
+        // TODO: Replace with your Firebase project config
+        const firebaseConfig = {
+  apiKey: "AIzaSyBR0NEl4TPN7bGfNN49V8pxtQa7P2GTK0k",
+  authDomain: "thapar-timetable-d0a12.firebaseapp.com",
+  projectId: "thapar-timetable-d0a12",
+  storageBucket: "thapar-timetable-d0a12.firebasestorage.app",
+  messagingSenderId: "96319566329",
+  appId: "1:96319566329:web:e2f7d49aebe690817f4d28",
+  measurementId: "G-RE094G93NX"
+};
+
+        // Initialize Firebase
+        let db, auth, currentUser = null;
+        let firebaseInitialized = false;
+
+        try {
+            firebase.initializeApp(firebaseConfig);
+            db = firebase.firestore();
+            auth = firebase.auth();
+            firebaseInitialized = true;
+            
+            // Anonymous Auth - assigns unique UID to each visitor
+            auth.signInAnonymously().then((result) => {
+                currentUser = result.user;
+                console.log('Anonymous user:', currentUser.uid);
+            }).catch((error) => {
+                console.error('Auth error:', error);
+            });
+        } catch (e) {
+            console.warn('Firebase not configured. Using demo mode.');
+            firebaseInitialized = false;
+        }
+
+        // ==================== GLOBAL STATE ====================
         let allTimetableData = null;
         let timetableData = null;
         let currentSection = null;
         let todayMode = false;
+        let resources = [];
+        let currentFilter = 'all';
+        let qualityRating = 0;
+        let relevancyRating = 0;
+        let unsubscribeListener = null;
+
+        const subjectNames = {
+            'UCS415': 'Design & Analysis of Algorithms',
+            'UCS310': 'Database Management Systems',
+            'UCS321': 'AI for Engineers',
+            'UCS414': 'Computer Networks',
+            'UMA401': 'Probability and Statistics',
+            'UTA024': 'Engineering Design Project II',
+            'UTD003': 'Aptitude Skills Building'
+        };
+
         const timeSlots = { 'slot1': '8:00 AM', 'slot2': '8:50 AM', 'slot3': '9:40 AM', 'slot4': '10:30 AM', 'slot5': '11:20 AM', 'slot6': '12:10 PM', 'slot7': '1:00 PM', 'slot8': '1:50 PM', 'slot9': '2:40 PM', 'slot10': '3:30 PM', 'slot11': '4:20 PM', 'slot12': '5:10 PM', 'slot13': '6:00 PM', 'slot14': '6:50 PM' };
 
-        // Load JSON data
+        // ==================== RESOURCE HUB - FIREBASE FUNCTIONS ====================
+        
+        function openResourceHub() {
+            document.getElementById('landing-page').classList.add('hidden');
+            document.getElementById('resource-page').classList.add('active');
+            
+            if (firebaseInitialized) {
+                startRealtimeListener();
+            } else {
+                loadDemoResources();
+            }
+        }
+
+        function goBackFromResources() {
+            document.getElementById('landing-page').classList.remove('hidden');
+            document.getElementById('resource-page').classList.remove('active');
+            
+            // Unsubscribe from real-time listener
+            if (unsubscribeListener) {
+                unsubscribeListener();
+                unsubscribeListener = null;
+            }
+        }
+
+        // Real-time listener for Firestore
+        function startRealtimeListener() {
+            const statusEl = document.getElementById('connection-status');
+            
+            // Build query with filters
+            let query = db.collection('resources')
+                .where('netScore', '>', -5) // Quality filter: hide badly rated
+                .where('reportCount', '<', 3) // Safety filter: hide reported
+                .orderBy('netScore', 'desc');
+
+            unsubscribeListener = query.onSnapshot((snapshot) => {
+                resources = [];
+                snapshot.forEach((doc) => {
+                    resources.push({ id: doc.id, ...doc.data() });
+                });
+                
+                statusEl.classList.remove('offline');
+                statusEl.querySelector('span').textContent = 'Connected • Real-time';
+                
+                renderResources();
+            }, (error) => {
+                console.error('Firestore error:', error);
+                statusEl.classList.add('offline');
+                statusEl.querySelector('span').textContent = 'Connection error';
+                loadDemoResources();
+            });
+        }
+
+        // Demo mode for when Firebase is not configured
+        function loadDemoResources() {
+            const statusEl = document.getElementById('connection-status');
+            statusEl.classList.add('offline');
+            statusEl.querySelector('span').textContent = 'Demo Mode (Configure Firebase)';
+            
+            resources = [
+                { id: '1', title: 'Abdul Bari - Algorithms Playlist', subject: 'UCS415', platform: 'YouTube', type: 'Playlist', url: 'https://www.youtube.com/playlist?list=PLDN4rrl48XKpZkf03iYFl-O29szjTrs_O', quality: 5, relevancy: 4, upvotes: 28, downvotes: 4, netScore: 24, reportCount: 0, upvotedBy: [], downvotedBy: [], reportedBy: [] },
+                { id: '2', title: 'Gate Smashers - DBMS Complete', subject: 'UCS310', platform: 'YouTube', type: 'Playlist', url: 'https://www.youtube.com/playlist?list=PLxCzCOWd7aiFAN6I8CuViBuCdJgiOkT2Y', quality: 4, relevancy: 5, upvotes: 22, downvotes: 4, netScore: 18, reportCount: 0, upvotedBy: [], downvotedBy: [], reportedBy: [] },
+                { id: '3', title: 'Neso Academy - Computer Networks', subject: 'UCS414', platform: 'YouTube', type: 'Playlist', url: 'https://www.youtube.com/playlist?list=PLBlnK6fEyqRgMCUAG0XRw78UA8qnv6jEx', quality: 5, relevancy: 4, upvotes: 19, downvotes: 4, netScore: 15, reportCount: 0, upvotedBy: [], downvotedBy: [], reportedBy: [] },
+                { id: '4', title: 'NPTEL - Probability & Statistics', subject: 'UMA401', platform: 'NPTEL', type: 'Course', url: 'https://nptel.ac.in/courses/111105090', quality: 5, relevancy: 5, upvotes: 16, downvotes: 4, netScore: 12, reportCount: 0, upvotedBy: [], downvotedBy: [], reportedBy: [] },
+                { id: '5', title: 'Sentdex - AI/ML with Python', subject: 'UCS321', platform: 'YouTube', type: 'Playlist', url: 'https://www.youtube.com/playlist?list=PLQVvvaa0QuDfKTOs3Keq_kaG2P55YRn5v', quality: 4, relevancy: 3, upvotes: 12, downvotes: 3, netScore: 9, reportCount: 0, upvotedBy: [], downvotedBy: [], reportedBy: [] }
+            ];
+            renderResources();
+        }
+
+        function switchTab(tab) {
+            document.getElementById('view-tab').classList.toggle('active', tab === 'view');
+            document.getElementById('add-tab').classList.toggle('active', tab === 'add');
+            document.getElementById('view-content').classList.toggle('hidden', tab !== 'view');
+            document.getElementById('add-content').classList.toggle('hidden', tab !== 'add');
+        }
+
+        function renderResources() {
+            const list = document.getElementById('resource-list');
+            let filtered = resources;
+            
+            if (currentFilter !== 'all') {
+                filtered = resources.filter(r => r.subject === currentFilter);
+            }
+
+            // Sort by netScore (descending)
+            filtered.sort((a, b) => (b.netScore || 0) - (a.netScore || 0));
+
+            if (filtered.length === 0) {
+                list.innerHTML = `
+                    <div class="empty-state">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                        </svg>
+                        <h3>No resources yet</h3>
+                        <p>Be the first to add a resource for this subject!</p>
+                    </div>
+                `;
+                return;
+            }
+
+            const uid = currentUser?.uid || 'demo-user';
+            
+            list.innerHTML = filtered.map(r => {
+                const hasUpvoted = r.upvotedBy?.includes(uid);
+                const hasDownvoted = r.downvotedBy?.includes(uid);
+                const hasReported = r.reportedBy?.includes(uid);
+                const scoreClass = r.netScore > 0 ? 'positive' : r.netScore < 0 ? 'negative' : '';
+                
+                return `
+                <div class="resource-card ${hasReported ? 'reported' : ''}">
+                    <div class="vote-section">
+                        <button class="vote-btn upvote ${hasUpvoted ? 'active' : ''}" onclick="vote('${r.id}', 'up')" title="This helped me">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <path d="M18 15l-6-6-6 6"/>
+                            </svg>
+                        </button>
+                        <span class="vote-count ${scoreClass}">${r.netScore || 0}</span>
+                        <button class="vote-btn downvote ${hasDownvoted ? 'active' : ''}" onclick="vote('${r.id}', 'down')" title="Not helpful">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <path d="M6 9l6 6 6-6"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="resource-content">
+                        <div class="resource-title-row">
+                            <div class="resource-title">
+                                ${r.url ? `<a href="${r.url}" target="_blank">${r.title}</a>` : r.title}
+                                ${r.url ? `<svg class="external-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>` : ''}
+                            </div>
+                            <button class="report-btn ${hasReported ? 'reported' : ''}" onclick="reportResource('${r.id}')" title="Report as spam/broken">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="resource-meta">
+                            <span class="meta-tag platform">${r.platform}</span>
+                            <span class="meta-tag type">${r.type}</span>
+                            <span class="meta-tag">Quality: ${renderStars(r.quality)}</span>
+                            <span class="meta-tag">Relevancy: ${renderStars(r.relevancy)}</span>
+                        </div>
+                        <div class="resource-subject">${subjectNames[r.subject] || r.subject}</div>
+                    </div>
+                </div>
+            `}).join('');
+        }
+
+        function renderStars(rating) {
+            let html = '<span class="rating-stars">';
+            for (let i = 1; i <= 5; i++) {
+                html += `<svg viewBox="0 0 24 24" class="${i <= rating ? 'filled' : 'empty'}" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`;
+            }
+            html += '</span>';
+            return html;
+        }
+
+        // Vote function with "Vote Rigging Shield"
+        async function vote(resourceId, voteType) {
+            const uid = currentUser?.uid;
+            
+            if (!firebaseInitialized) {
+                // Demo mode voting
+                const resource = resources.find(r => r.id === resourceId);
+                if (!resource) return;
+                
+                if (voteType === 'up') {
+                    if (resource.upvotedBy?.includes('demo-user')) {
+                        resource.upvotes--;
+                        resource.upvotedBy = resource.upvotedBy.filter(u => u !== 'demo-user');
+                    } else {
+                        resource.upvotes++;
+                        resource.upvotedBy = [...(resource.upvotedBy || []), 'demo-user'];
+                        // Remove downvote if exists
+                        if (resource.downvotedBy?.includes('demo-user')) {
+                            resource.downvotes--;
+                            resource.downvotedBy = resource.downvotedBy.filter(u => u !== 'demo-user');
+                        }
+                    }
+                } else {
+                    if (resource.downvotedBy?.includes('demo-user')) {
+                        resource.downvotes--;
+                        resource.downvotedBy = resource.downvotedBy.filter(u => u !== 'demo-user');
+                    } else {
+                        resource.downvotes++;
+                        resource.downvotedBy = [...(resource.downvotedBy || []), 'demo-user'];
+                        // Remove upvote if exists
+                        if (resource.upvotedBy?.includes('demo-user')) {
+                            resource.upvotes--;
+                            resource.upvotedBy = resource.upvotedBy.filter(u => u !== 'demo-user');
+                        }
+                    }
+                }
+                resource.netScore = resource.upvotes - resource.downvotes;
+                renderResources();
+                showToast(voteType === 'up' ? '👍 Upvoted!' : '👎 Downvoted', 'success');
+                return;
+            }
+            
+            if (!uid) {
+                showToast('⏳ Please wait, authenticating...', 'warning');
+                return;
+            }
+
+            const docRef = db.collection('resources').doc(resourceId);
+            
+            try {
+                await db.runTransaction(async (transaction) => {
+                    const doc = await transaction.get(docRef);
+                    if (!doc.exists) throw new Error('Resource not found');
+                    
+                    const data = doc.data();
+                    let upvotedBy = data.upvotedBy || [];
+                    let downvotedBy = data.downvotedBy || [];
+                    let upvotes = data.upvotes || 0;
+                    let downvotes = data.downvotes || 0;
+                    
+                    if (voteType === 'up') {
+                        if (upvotedBy.includes(uid)) {
+                            // Remove upvote
+                            upvotedBy = upvotedBy.filter(u => u !== uid);
+                            upvotes--;
+                        } else {
+                            // Add upvote
+                            upvotedBy.push(uid);
+                            upvotes++;
+                            // Remove downvote if exists
+                            if (downvotedBy.includes(uid)) {
+                                downvotedBy = downvotedBy.filter(u => u !== uid);
+                                downvotes--;
+                            }
+                        }
+                    } else {
+                        if (downvotedBy.includes(uid)) {
+                            // Remove downvote
+                            downvotedBy = downvotedBy.filter(u => u !== uid);
+                            downvotes--;
+                        } else {
+                            // Add downvote
+                            downvotedBy.push(uid);
+                            downvotes++;
+                            // Remove upvote if exists
+                            if (upvotedBy.includes(uid)) {
+                                upvotedBy = upvotedBy.filter(u => u !== uid);
+                                upvotes--;
+                            }
+                        }
+                    }
+                    
+                    transaction.update(docRef, {
+                        upvotedBy,
+                        downvotedBy,
+                        upvotes,
+                        downvotes,
+                        netScore: upvotes - downvotes
+                    });
+                });
+                
+                showToast(voteType === 'up' ? '👍 Vote recorded!' : '👎 Vote recorded!', 'success');
+            } catch (error) {
+                console.error('Vote error:', error);
+                showToast('❌ Failed to vote. Try again.', 'error');
+            }
+        }
+
+        // Report function with "Safety Shield"
+        async function reportResource(resourceId) {
+            const uid = currentUser?.uid;
+            
+            if (!firebaseInitialized) {
+                showToast('🚩 Reported (Demo mode)', 'warning');
+                return;
+            }
+            
+            if (!uid) {
+                showToast('⏳ Please wait, authenticating...', 'warning');
+                return;
+            }
+
+            const docRef = db.collection('resources').doc(resourceId);
+            
+            try {
+                await db.runTransaction(async (transaction) => {
+                    const doc = await transaction.get(docRef);
+                    if (!doc.exists) throw new Error('Resource not found');
+                    
+                    const data = doc.data();
+                    let reportedBy = data.reportedBy || [];
+                    
+                    if (reportedBy.includes(uid)) {
+                        showToast('⚠️ You already reported this', 'warning');
+                        return;
+                    }
+                    
+                    reportedBy.push(uid);
+                    
+                    transaction.update(docRef, {
+                        reportedBy,
+                        reportCount: reportedBy.length
+                    });
+                });
+                
+                showToast('🚩 Reported. Thanks for keeping the hub clean!', 'success');
+            } catch (error) {
+                console.error('Report error:', error);
+                showToast('❌ Failed to report. Try again.', 'error');
+            }
+        }
+
+        // Subject filter handlers
+        document.getElementById('subject-filter').addEventListener('click', (e) => {
+            if (e.target.classList.contains('subject-chip')) {
+                document.querySelectorAll('.subject-chip').forEach(c => c.classList.remove('active'));
+                e.target.classList.add('active');
+                currentFilter = e.target.dataset.subject;
+                renderResources();
+            }
+        });
+
+        // Star rating handlers
+        function setupStarRating(containerId, labelId, setRating) {
+            const container = document.getElementById(containerId);
+            const label = document.getElementById(labelId);
+            const stars = container.querySelectorAll('.star-btn');
+
+            stars.forEach(star => {
+                star.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const value = parseInt(star.dataset.value);
+                    setRating(value);
+                    
+                    stars.forEach((s, i) => {
+                        s.classList.toggle('active', i < value);
+                    });
+
+                    const labels = ['Poor', 'Fair', 'Good', 'Very Good', 'Excellent'];
+                    label.textContent = `${value}/5 - ${labels[value - 1]}`;
+                });
+            });
+        }
+
+        setupStarRating('quality-rating', 'quality-label', (v) => qualityRating = v);
+        setupStarRating('relevancy-rating', 'relevancy-label', (v) => relevancyRating = v);
+
+        // Check for duplicate URL (The "Duplicate Shield")
+        async function checkDuplicateURL(url, subject) {
+            if (!firebaseInitialized) return false;
+            
+            const normalizedURL = normalizeURL(url);
+            const snapshot = await db.collection('resources')
+                .where('normalizedURL', '==', normalizedURL)
+                .get();
+            
+            return !snapshot.empty;
+        }
+
+        function normalizeURL(url) {
+            try {
+                const urlObj = new URL(url);
+                // Remove trailing slashes, www, and common tracking params
+                let normalized = urlObj.hostname.replace(/^www\./, '') + urlObj.pathname.replace(/\/$/, '');
+                return normalized.toLowerCase();
+            } catch {
+                return url.toLowerCase();
+            }
+        }
+
+        // Form submission with all shields
+        document.getElementById('add-resource-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submit-btn');
+            const urlInput = document.getElementById('resource-url');
+            const urlError = document.getElementById('url-error');
+            
+            const title = document.getElementById('resource-title').value.trim();
+            const subject = document.getElementById('resource-subject').value;
+            const platform = document.getElementById('resource-platform').value;
+            const type = document.getElementById('resource-type').value;
+            const url = urlInput.value.trim();
+
+            // Validation
+            if (!title || !subject || !platform || !type || !url) {
+                showToast('❌ Please fill all required fields', 'error');
+                return;
+            }
+
+            if (qualityRating === 0 || relevancyRating === 0) {
+                showToast('❌ Please rate quality and relevancy', 'error');
+                return;
+            }
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = '⏳ Checking...';
+
+            // Check for duplicate (Duplicate Shield)
+            if (firebaseInitialized) {
+                const isDuplicate = await checkDuplicateURL(url, subject);
+                if (isDuplicate) {
+                    urlInput.classList.add('error');
+                    urlError.classList.remove('hidden');
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = '🚀 Add Resource';
+                    showToast('⚠️ This resource already exists! Upvote it instead.', 'warning');
+                    return;
+                }
+            }
+
+            urlInput.classList.remove('error');
+            urlError.classList.add('hidden');
+
+            const uid = currentUser?.uid || 'demo-user';
+            
+            const newResource = {
+                title,
+                subject,
+                platform,
+                type,
+                url,
+                normalizedURL: normalizeURL(url),
+                quality: qualityRating,
+                relevancy: relevancyRating,
+                upvotes: 1,
+                downvotes: 0,
+                netScore: 1,
+                reportCount: 0,
+                upvotedBy: [uid],
+                downvotedBy: [],
+                reportedBy: [],
+                addedBy: uid,
+                addedAt: firebase?.firestore?.FieldValue?.serverTimestamp() || new Date().toISOString()
+            };
+
+            try {
+                if (firebaseInitialized) {
+                    await db.collection('resources').add(newResource);
+                } else {
+                    // Demo mode
+                    newResource.id = Date.now().toString();
+                    resources.push(newResource);
+                }
+                
+                // Reset form
+                e.target.reset();
+                qualityRating = 0;
+                relevancyRating = 0;
+                document.querySelectorAll('.star-btn').forEach(s => s.classList.remove('active'));
+                document.getElementById('quality-label').textContent = 'Not rated';
+                document.getElementById('relevancy-label').textContent = 'Not rated';
+
+                showToast('✅ Resource added successfully!', 'success');
+                switchTab('view');
+                
+                if (!firebaseInitialized) renderResources();
+            } catch (error) {
+                console.error('Add error:', error);
+                showToast('❌ Failed to add resource. Try again.', 'error');
+            }
+
+            submitBtn.disabled = false;
+            submitBtn.textContent = '🚀 Add Resource';
+        });
+
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-message').textContent = message;
+            toast.className = `toast ${type} show`;
+            setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+
+        // ==================== TIMETABLE FUNCTIONS ====================
+        
         fetch('2q1_timetable.json')
-        .then(response => response.json())
-        .then(data => {
-            allTimetableData = data;
-        })
-        .catch(error => console.error('Error loading timetable:', error));
+            .then(response => response.json())
+            .then(data => { allTimetableData = data; })
+            .catch(error => console.error('Error loading timetable:', error));
 
         function loadSection(section) {
             if (!allTimetableData) {
@@ -553,20 +1896,16 @@
             currentSection = section;
             timetableData = allTimetableData[section];
             
-            // Update title
             document.getElementById('main-title').textContent = `${section} Timetable`;
             document.title = `${section} Timetable - Semester IV`;
             
-            // Show timetable page, hide landing
             document.getElementById('landing-page').classList.add('hidden');
             document.getElementById('timetable-page').classList.add('active');
             
-            // Clear and populate timetable
             clearTimetable();
             populateTimetable(timetableData);
             initializeTodayMode();
             
-            // Set week mode as default
             document.getElementById('week-btn').classList.add('active');
         }
 
