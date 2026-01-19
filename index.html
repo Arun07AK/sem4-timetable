@@ -1767,15 +1767,15 @@
         }
 
         function normalizeURL(url) {
-            try {
-                const urlObj = new URL(url);
-                // Remove trailing slashes, www, and common tracking params
-                let normalized = urlObj.hostname.replace(/^www\./, '') + urlObj.pathname.replace(/\/$/, '');
-                return normalized.toLowerCase();
-            } catch {
-                return url.toLowerCase();
-            }
-        }
+    try {
+        const urlObj = new URL(url);
+        // We MUST include urlObj.search to capture ?v=VIDEO_ID or ?list=PLAYLIST_ID
+        let normalized = urlObj.hostname.replace(/^www\./, '') + urlObj.pathname.replace(/\/$/, '') + urlObj.search;
+        return normalized.toLowerCase();
+    } catch {
+        return url.toLowerCase();
+    }
+}
 
         // Form submission with all shields
         document.getElementById('add-resource-form').addEventListener('submit', async (e) => {
