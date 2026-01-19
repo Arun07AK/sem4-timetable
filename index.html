@@ -1769,8 +1769,16 @@
         function normalizeURL(url) {
     try {
         const urlObj = new URL(url);
-        // We MUST include urlObj.search to capture ?v=VIDEO_ID or ?list=PLAYLIST_ID
-        let normalized = urlObj.hostname.replace(/^www\./, '') + urlObj.pathname.replace(/\/$/, '') + urlObj.search;
+        
+        // 1. Strip 'www.' AND 'm.' (mobile) from the start of the domain
+        let hostname = urlObj.hostname.replace(/^(www\.|m\.)/, '');
+        
+        // 2. Remove trailing slash from path
+        let path = urlObj.pathname.replace(/\/$/, '');
+        
+        // 3. Combine: Host + Path + Query Params (to catch ?v=ID)
+        let normalized = hostname + path + urlObj.search;
+        
         return normalized.toLowerCase();
     } catch {
         return url.toLowerCase();
